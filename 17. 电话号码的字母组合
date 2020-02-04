@@ -13,3 +13,29 @@
         }
         return ans;
     }
+
+
+class Solution {
+
+    String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    List<String>list=new ArrayList<>();
+
+    public List<String> letterCombinations(String digits) {
+        if(digits.length()==0) return new ArrayList<>();
+
+        combinate(digits,"",0);
+        return list;
+    }
+
+    public void combinate(String digits,String letter,int index){
+        if(index==digits.length()){
+            list.add(letter);
+            return;
+        }
+        int pos=Character.getNumericValue(digits.charAt(index));
+        String map_string=mapping[pos];
+        for(int i=0;i<map_string.length();i++){
+            combinate(digits,letter+map_string.charAt(i),index+1);
+        }
+    }
+}
